@@ -1,4 +1,11 @@
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 530px;
+    }
+}
+
 @media (min-width: 1200px) {
+
     .container,
     .container-lg,
     .container-md,
@@ -6,4 +13,5 @@
     .container-xl {
         max-width: 1320px;
     }
+
 }

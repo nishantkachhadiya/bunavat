@@ -4,6 +4,7 @@ import App from './App';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-day-picker/dist/style.css';
 import { Provider } from "react-redux"
 import store from "./redux/store";
 import { PersistGate } from 'redux-persist/integration/react'

@@ -3,7 +3,9 @@ import { Switch, Route, Router } from "react-router-dom";
 import Layout from "../components/Layout";
 import Home from "./home";
 import Category from "./category";
+import Product from "./product";
 import BASE_URL from "../_constant/index";
+
 
 export default function index({ socket }) {
     return (
@@ -16,6 +18,10 @@ export default function index({ socket }) {
 
                     <Route exact path={BASE_URL.BASE_URL + `category`}>
                         <Category />
+                    </Route>
+
+                    <Route exact path={BASE_URL.BASE_URL + `product`}>
+                        <Product />
                     </Route>
 
                     {/* <Route exact path={BASE_URL.BASE_URL + "notfound"}>

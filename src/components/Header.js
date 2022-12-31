@@ -1,20 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { Navbar, Nav, NavDropdown, Dropdown, Button } from "react-bootstrap";
 import { Link, Redirect, useHistory, useParams } from "react-router-dom";
-import { logout } from "../redux/apiActions/user.action";
-import { ThemeConsumer } from "../context/ThemeContext";
-import { useDispatch, useSelector } from "react-redux";
-import BASE_URL from "../_constant/index";
+import Modal from 'react-bootstrap/Modal';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+import ReactInputVerificationCode from "react-input-verification-code";
+import { DayPicker } from 'react-day-picker';
+
+import cart_1 from '../assets/img/cart/cart_1.png';
+import cart_2 from '../assets/img/cart/cart_2.png';
+import cart_3 from '../assets/img/cart/cart_3.png';
+
+import saved_1 from '../assets/img/saved/saved_1.png';
+import saved_2 from '../assets/img/saved/saved_2.png';
+import saved_3 from '../assets/img/saved/saved_3.png';
+import saved_4 from '../assets/img/saved/saved_4.png';
+import saved_5 from '../assets/img/saved/saved_5.png';
+import saved_6 from '../assets/img/saved/saved_6.png';
+import saved_7 from '../assets/img/saved/saved_7.png';
+import saved_8 from '../assets/img/saved/saved_8.png';
 
 export default function Header() {
     const changeloction = window.location.pathname;
-    const [headerColor, setHeaderColor] = useState(false)
-
+    const [headerColor, setHeaderColor] = useState(false);
     const [scroll, setScroll] = useState(false);
+    const [cartOpen, setCartOpen] = useState(false);
+    const [otpverify, setOtpverify] = useState(false);
+    const [calanderOpen, setCalanderOpen] = useState(false);
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const onChagewalletbar = () => {
         const current_loction = window.location.pathname;
-        var mypath = ["/category"].includes(current_loction)
+        var mypath = ["/category", "/product"].includes(current_loction)
         if (mypath) {
             setHeaderColor(true);
         }
@@ -32,6 +53,24 @@ export default function Header() {
         onChagewalletbar();
     }, [changeloction]);
 
+    const sidebarOpen = (classs) => {
+        if (document.body.getAttribute("menu-class") == classs) {
+            document.body.removeAttribute("menu-class", classs)
+        }
+        else {
+            document.body.setAttribute("menu-class", classs)
+        }
+    }
+
+    const mainsidebarOpen = (classs) => {
+        if ((document.body.getAttribute("main-sidebar") == classs) || document.body.getAttribute("") == classs) {
+            document.body.removeAttribute("main-sidebar", classs)
+        }
+        else {
+            document.body.setAttribute("main-sidebar", classs)
+        }
+    }
+
     return (
         <>
             <header className={scroll || headerColor ? "bunavat_wrapper active" : "bunavat_wrapper"}>
@@ -40,7 +79,7 @@ export default function Header() {
                         <div className="bunavat_nav_link_inner">
                             <ul className="bunavat_nav_link_inner_list">
                                 <li>
-                                    <div className="bunavat_nav_wrap">
+                                    <div className="bunavat_nav_wrap" onClick={() => { mainsidebarOpen("shopsidebar") }}>
                                         <p>Shop</p>
                                         <span>
                                             <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,7 +89,7 @@ export default function Header() {
                                     </div>
                                 </li>
                                 <li>
-                                    <div className="bunavat_nav_wrap">
+                                    <div className="bunavat_nav_wrap" onClick={() => { mainsidebarOpen("clubsidebar") }}>
                                         <p>Club</p>
                                         <span>
                                             <svg width="10" height="7" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -60,7 +99,7 @@ export default function Header() {
                                     </div>
                                 </li>
                                 <li>
-                                    <div className="bunavat_nav_wrap">
+                                    <div className="bunavat_nav_wrap" onClick={() => { mainsidebarOpen("") }}>
                                         <p>Reviews</p>
                                     </div>
                                 </li>
@@ -82,7 +121,7 @@ export default function Header() {
 
                             <ul className="account_info">
                                 <li>
-                                    <button>
+                                    <button onClick={handleShow}>
                                         <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g clipPath="url(#clip0_6128_2675)">
                                                 <path d="M12.52 23.9902C18.678 23.9902 23.67 18.9982 23.67 12.8402C23.67 6.68221 18.678 1.69019 12.52 1.69019C6.36202 1.69019 1.37 6.68221 1.37 12.8402C1.37 18.9982 6.36202 23.9902 12.52 23.9902Z" stroke="white" strokeWidth="1.7" strokeMiterlimit="10" />
@@ -99,7 +138,7 @@ export default function Header() {
                                     </button>
                                 </li>
                                 <li>
-                                    <button>
+                                    <button onClick={() => setCalanderOpen(!calanderOpen)}>
                                         <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g clipPath="url(#clip0_6112_2679)">
                                                 <path d="M22.15 3.33496H1.37V22.185H22.15V3.33496Z" stroke="white" strokeWidth="1.7" strokeMiterlimit="10" />
@@ -119,7 +158,7 @@ export default function Header() {
                                     </button>
                                 </li>
                                 <li>
-                                    <button className="cart_items">
+                                    <button className="cart_items" onClick={() => setCartOpen(!cartOpen)}>
                                         <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g clipPath="url(#clip0_6112_2688)">
                                                 <path d="M20.1199 9.34985H3.14993L1.23993 22.7399H22.0199L20.1199 9.34985Z" stroke="white" strokeWidth="1.7" strokeMiterlimit="10" />
@@ -142,15 +181,16 @@ export default function Header() {
                     </div>
                 </div>
 
-                {/* <div className="sidebar_menu_wrapper">
+                <div className="sidebar_menu_wrapper shop_sidebar">
+                    <div className="dark_bg" onClick={() => setScroll(false), setHeaderColor(false)}></div>
                     <div className="sidebar_menu_list">
                         <div className="top_search_wrap">
                             <div className="search_input">
                                 <span>
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <g clip-path="url(#clip0_6210_1168)">
-                                            <path d="M9.4201 17.9901C14.1532 17.9901 17.9901 14.1532 17.9901 9.4201C17.9901 4.68702 14.1532 0.850098 9.4201 0.850098C4.68702 0.850098 0.850098 4.68702 0.850098 9.4201C0.850098 14.1532 4.68702 17.9901 9.4201 17.9901Z" stroke="black" stroke-width="1.7" stroke-miterlimit="10" />
-                                            <path d="M15 15L22.56 22.56" stroke="black" stroke-width="1.7" stroke-miterlimit="10" />
+                                        <g clipPath="url(#clip0_6210_1168)">
+                                            <path d="M9.4201 17.9901C14.1532 17.9901 17.9901 14.1532 17.9901 9.4201C17.9901 4.68702 14.1532 0.850098 9.4201 0.850098C4.68702 0.850098 0.850098 4.68702 0.850098 9.4201C0.850098 14.1532 4.68702 17.9901 9.4201 17.9901Z" stroke="black" strokeWidth="1.7" strokeMiterlimit="10" />
+                                            <path d="M15 15L22.56 22.56" stroke="black" strokeWidth="1.7" strokeMiterlimit="10" />
                                         </g>
                                         <defs>
                                             <clipPath id="clip0_6210_1168">
@@ -165,28 +205,23 @@ export default function Header() {
                             <div className="sidebar_wrapper">
                                 <ul className="common_link_wrap">
                                     <li>
-                                        <Link to="/" className="common_sidebar_link">
+                                        <Link to="/" className="common_sidebar_link" onClick={() => sidebarOpen('')}>
                                             <span>Most Loved</span>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/" className="common_sidebar_link">
+                                        <Link to="/" className="common_sidebar_link" onClick={() => sidebarOpen('')}>
                                             <span>Newest</span>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/" className="common_sidebar_link">
-                                            <span>Kind</span>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <div className="inner_menu">
-                                            <button to="/" className="common_arrow_btn common_sidebar_link">
-                                                <span>Bridal</span>
+                                        <div className="inner_menu kind_menu">
+                                            <button to="/" className="common_arrow_btn common_sidebar_link " onClick={() => sidebarOpen('kind_menu')}>
+                                                <span>Kind</span>
                                                 <span>
                                                     <svg width="22" height="25" viewBox="0 0 22 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M9.80005 2.13184L20.147 12.4788L9.80005 22.8513" stroke="black" stroke-width="1.7" stroke-miterlimit="10" />
-                                                        <path d="M0.800049 12.5044H19.7267" stroke="black" stroke-width="1.7" stroke-miterlimit="10" />
+                                                        <path d="M9.80005 2.13184L20.147 12.4788L9.80005 22.8513" stroke="black" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        <path d="M0.800049 12.5044H19.7267" stroke="black" strokeWidth="1.7" strokeMiterlimit="10" />
                                                     </svg>
                                                 </span>
                                             </button>
@@ -198,27 +233,216 @@ export default function Header() {
                                                             <span>Sari</span>
                                                         </Link>
                                                     </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Kurta & Churidar</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Ready to Wear</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Dresses</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Lehenga</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Salwar Suit</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Ghagra Choli</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Everyday Casuals</span>
+                                                        </Link>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </li>
                                     <li>
-                                        <Link to="/" className="common_sidebar_link">
-                                            <span>Festive</span>
-                                        </Link>
+                                        <div className="inner_menu bridal_menu">
+                                            <button to="/" className="common_arrow_btn common_sidebar_link" onClick={() => sidebarOpen('bridal_menu')}>
+                                                <span>Bridal</span>
+                                                <span>
+                                                    <svg width="22" height="25" viewBox="0 0 22 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M9.80005 2.13184L20.147 12.4788L9.80005 22.8513" stroke="black" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        <path d="M0.800049 12.5044H19.7267" stroke="black" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                    </svg>
+                                                </span>
+                                            </button>
+
+                                            <div className="inner_menu_wrap">
+                                                <ul className="common_link_wrap">
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Designer Wear</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>The Bride</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Roka Exhibit</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Haldi Gallery</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Mehendi</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Sangeet</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Ghagra Choli</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Everyday Casuals</span>
+                                                        </Link>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </li>
                                     <li>
-                                        <Link to="/" className="common_sidebar_link">
-                                            <span>Regional</span>
-                                        </Link>
+                                        <div className="inner_menu festive_menu">
+                                            <button to="/" className="common_arrow_btn common_sidebar_link" onClick={() => sidebarOpen('festive_menu')}>
+                                                <span>Festive</span>
+                                                <span>
+                                                    <svg width="22" height="25" viewBox="0 0 22 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M9.80005 2.13184L20.147 12.4788L9.80005 22.8513" stroke="black" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        <path d="M0.800049 12.5044H19.7267" stroke="black" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                    </svg>
+                                                </span>
+                                            </button>
+
+                                            <div className="inner_menu_wrap">
+                                                <ul className="common_link_wrap">
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>All Festive Wear</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Diwali</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Eid</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Dussehra</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Holi</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Onam</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Raksha Bandhan</span>
+                                                        </Link>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </li>
                                     <li>
-                                        <Link to="/" className="common_sidebar_link">
+                                        <div className="inner_menu regional_menu">
+                                            <button to="/" className="common_arrow_btn common_sidebar_link" onClick={() => sidebarOpen('regional_menu')}>
+                                                <span>Regional</span>
+                                                <span>
+                                                    <svg width="22" height="25" viewBox="0 0 22 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M9.80005 2.13184L20.147 12.4788L9.80005 22.8513" stroke="black" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        <path d="M0.800049 12.5044H19.7267" stroke="black" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                    </svg>
+                                                </span>
+                                            </button>
+
+                                            <div className="inner_menu_wrap">
+                                                <ul className="common_link_wrap">
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Gujarat</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Maharashtra</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>West Bengal</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Rajasthan</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Kerala</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Assam</span>
+                                                        </Link>
+                                                    </li>
+                                                    <li>
+                                                        <Link to="/" className="common_sidebar_link">
+                                                            <span>Orissa</span>
+                                                        </Link>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <Link to="/" className="common_sidebar_link" onClick={() => sidebarOpen('')}>
                                             <span>By Designers</span>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/" className="common_sidebar_link">
+                                        <Link to="/" className="common_sidebar_link" onClick={() => sidebarOpen('')}>
                                             <span>Clearance</span>
                                         </Link>
                                     </li>
@@ -226,8 +450,653 @@ export default function Header() {
                             </div>
                         </div>
                     </div>
-                </div> */}
+                </div>
             </header>
+
+            <div className={cartOpen ? "cart_wrap active" : "cart_wrap"}>
+                <div className="cart_dark" onClick={() => setCartOpen(false)}></div>
+                <div className="cart_inner">
+                    <Tabs
+                        defaultActiveKey="cart"
+                        id="uncontrolled-tab-example"
+                        className=""
+                    >
+                        <Tab eventKey="cart" title="Cart">
+                            <div className='cart_wrapper'>
+                                <div className='cart_information'>
+                                    <div className="card_img">
+                                        <Link to="/product" onClick={() => setCartOpen(false)} >
+                                            <img src={cart_1} alt="cart" />
+                                        </Link>
+                                    </div>
+                                    <div className="cart_product_info">
+                                        <h3>Synthetic Floral Print Sari</h3>
+                                        <p>Lemon Yellow  •  Medium</p>
+
+                                        <div className='quantiy_wrapper'>
+                                            <p>Qty</p>
+                                            <div className='quantiy_inner'>
+                                                <button type='button' className='common_btn'>
+                                                    <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <g clipPath="url(#clip0_160_1440)">
+                                                            <path d="M8.14 5H0" stroke="black" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_160_1440">
+                                                                <rect width="8.14" height="8.14" fill="white" transform="translate(0 0.929932)" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </button>
+                                                <input type="text" placeholder='1' defaultValue={1} />
+                                                <button type='button' className='common_btn'>
+                                                    <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <g clipPath="url(#clip0_160_1444)">
+                                                            <path d="M4.20966 0.929932V9.06993" stroke="black" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                            <path d="M8.27965 5H0.139648" stroke="black" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_160_1444">
+                                                                <rect width="8.14" height="8.14" fill="white" transform="translate(0.139648 0.929932)" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div className='remove_cart_block'>
+                                            <p>₹4,500 </p>
+                                            <button type='button' className='remove_btn'>
+                                                <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g clipPath="url(#clip0_160_1450)">
+                                                        <path d="M3.35999 1.0249L7.39999 5.0649L3.35999 9.1149" stroke="#DA4949" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        <path d="M0.0100098 5.07471H7.40001" stroke="#DA4949" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        <path d="M8.15002 0.514893V9.51489" stroke="#DA4949" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_160_1450">
+                                                            <rect width="8.99" height="9.29" fill="white" transform="translate(0.0100098 0.424805)" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+
+                                                <span>Remove</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className='cart_information'>
+                                    <div className="card_img">
+                                        <Link to="/product" onClick={() => setCartOpen(false)}>
+                                            <img src={cart_2} alt="cart" />
+                                        </Link>
+                                    </div>
+                                    <div className="cart_product_info">
+                                        <h3>Synthetic Floral Print Sari</h3>
+                                        <p>Lemon Yellow  •  Medium</p>
+
+                                        <div className='quantiy_wrapper'>
+                                            <p>Qty</p>
+                                            <div className='quantiy_inner'>
+                                                <button type='button' className='common_btn'>
+                                                    <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <g clipPath="url(#clip0_160_1440)">
+                                                            <path d="M8.14 5H0" stroke="black" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_160_1440">
+                                                                <rect width="8.14" height="8.14" fill="white" transform="translate(0 0.929932)" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </button>
+                                                <input type="text" placeholder='1' defaultValue={1} />
+                                                <button type='button' className='common_btn'>
+                                                    <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <g clipPath="url(#clip0_160_1444)">
+                                                            <path d="M4.20966 0.929932V9.06993" stroke="black" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                            <path d="M8.27965 5H0.139648" stroke="black" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_160_1444">
+                                                                <rect width="8.14" height="8.14" fill="white" transform="translate(0.139648 0.929932)" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div className='remove_cart_block'>
+                                            <p>₹4,500 </p>
+                                            <button type='button' className='remove_btn'>
+                                                <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g clipPath="url(#clip0_160_1450)">
+                                                        <path d="M3.35999 1.0249L7.39999 5.0649L3.35999 9.1149" stroke="#DA4949" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        <path d="M0.0100098 5.07471H7.40001" stroke="#DA4949" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        <path d="M8.15002 0.514893V9.51489" stroke="#DA4949" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_160_1450">
+                                                            <rect width="8.99" height="9.29" fill="white" transform="translate(0.0100098 0.424805)" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+
+                                                <span>Remove</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className='cart_information'>
+                                    <div className="card_img">
+                                        <Link to="/product" onClick={() => setCartOpen(false)}>
+                                            <img src={cart_3} alt="cart" />
+                                        </Link>
+                                    </div>
+                                    <div className="cart_product_info">
+                                        <h3>Synthetic Floral Print Sari</h3>
+                                        <p>Lemon Yellow  •  Medium</p>
+
+                                        <div className='quantiy_wrapper'>
+                                            <p>Qty</p>
+                                            <div className='quantiy_inner'>
+                                                <button type='button' className='common_btn'>
+                                                    <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <g clipPath="url(#clip0_160_1440)">
+                                                            <path d="M8.14 5H0" stroke="black" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_160_1440">
+                                                                <rect width="8.14" height="8.14" fill="white" transform="translate(0 0.929932)" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </button>
+                                                <input type="text" placeholder='1' defaultValue={1} />
+                                                <button type='button' className='common_btn'>
+                                                    <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <g clipPath="url(#clip0_160_1444)">
+                                                            <path d="M4.20966 0.929932V9.06993" stroke="black" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                            <path d="M8.27965 5H0.139648" stroke="black" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_160_1444">
+                                                                <rect width="8.14" height="8.14" fill="white" transform="translate(0.139648 0.929932)" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div className='remove_cart_block'>
+                                            <p>₹4,500 </p>
+                                            <button type='button' className='remove_btn'>
+                                                <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g clipPath="url(#clip0_160_1450)">
+                                                        <path d="M3.35999 1.0249L7.39999 5.0649L3.35999 9.1149" stroke="#DA4949" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        <path d="M0.0100098 5.07471H7.40001" stroke="#DA4949" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        <path d="M8.15002 0.514893V9.51489" stroke="#DA4949" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_160_1450">
+                                                            <rect width="8.99" height="9.29" fill="white" transform="translate(0.0100098 0.424805)" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+
+                                                <span>Remove</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </Tab>
+                        <Tab eventKey="saved" title="Saved">
+                            <div className='saved_wrapper'>
+                                <div className='row'>
+                                    <div className='col-6'>
+                                        <div className='saved_img_information'>
+                                            <div className="save_item_img">
+                                                <Link to="/product" onClick={() => setCartOpen(false)}>
+                                                    <img src={saved_1} alt="saved img" />
+                                                </Link>
+                                            </div>
+                                            <div className='cart_price_wrapper'>
+                                                <div className='d-flex align-items-center price_of_cart_wrap'>
+                                                    <span>₹2,000 </span>
+                                                    <s>₹2,600</s>
+                                                </div>
+                                                <button className='plus_cart'>
+                                                    <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <g clipPath="url(#clip0_422_3736)">
+                                                            <path d="M4.92999 0.930054V9.07005" stroke="#2A3592" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                            <path d="M8.99999 5H0.859985" stroke="#2A3592" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_422_3736">
+                                                                <rect width="8.14" height="8.14" fill="white" transform="translate(0.859985 0.930054)" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                    <span>Cart</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='col-6'>
+                                        <div className='saved_img_information'>
+                                            <div className="save_item_img">
+                                                <Link to="/product" onClick={() => setCartOpen(false)}>
+                                                    <img src={saved_2} alt="saved img" />
+                                                </Link>
+                                            </div>
+                                            <div className='cart_price_wrapper'>
+                                                <div className='d-flex align-items-center price_of_cart_wrap'>
+                                                    <span>₹11,100  </span>
+                                                </div>
+                                                <button className='plus_cart'>
+                                                    <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <g clipPath="url(#clip0_422_3736)">
+                                                            <path d="M4.92999 0.930054V9.07005" stroke="#2A3592" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                            <path d="M8.99999 5H0.859985" stroke="#2A3592" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_422_3736">
+                                                                <rect width="8.14" height="8.14" fill="white" transform="translate(0.859985 0.930054)" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                    <span>Cart</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='col-6'>
+                                        <div className='saved_img_information'>
+                                            <div className="save_item_img">
+                                                <Link to="/product" onClick={() => setCartOpen(false)}>
+                                                    <img src={saved_3} alt="saved img" />
+                                                </Link>
+                                            </div>
+                                            <div className='cart_price_wrapper'>
+                                                <div className='d-flex align-items-center price_of_cart_wrap'>
+                                                    <span>₹3,200  </span>
+                                                </div>
+                                                <button className='plus_cart'>
+                                                    <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <g clipPath="url(#clip0_422_3736)">
+                                                            <path d="M4.92999 0.930054V9.07005" stroke="#2A3592" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                            <path d="M8.99999 5H0.859985" stroke="#2A3592" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_422_3736">
+                                                                <rect width="8.14" height="8.14" fill="white" transform="translate(0.859985 0.930054)" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                    <span>Cart</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='col-6'>
+                                        <div className='saved_img_information'>
+                                            <div className="save_item_img">
+                                                <Link to="/product" onClick={() => setCartOpen(false)}>
+                                                    <img src={saved_4} alt="saved img" />
+                                                </Link>
+                                            </div>
+                                            <div className='cart_price_wrapper'>
+                                                <div className='d-flex align-items-center price_of_cart_wrap'>
+                                                    <span>₹18,900  </span>
+                                                </div>
+                                                <button className='plus_cart'>
+                                                    <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <g clipPath="url(#clip0_422_3736)">
+                                                            <path d="M4.92999 0.930054V9.07005" stroke="#2A3592" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                            <path d="M8.99999 5H0.859985" stroke="#2A3592" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_422_3736">
+                                                                <rect width="8.14" height="8.14" fill="white" transform="translate(0.859985 0.930054)" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                    <span>Cart</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='col-6'>
+                                        <div className='saved_img_information'>
+                                            <div className="save_item_img">
+                                                <Link to="/product" onClick={() => setCartOpen(false)}>
+                                                    <img src={saved_5} alt="saved img" />
+                                                </Link>
+                                            </div>
+                                            <div className='cart_price_wrapper'>
+                                                <div className='d-flex align-items-center price_of_cart_wrap'>
+                                                    <span>₹12,400  </span>
+                                                </div>
+                                                <button className='plus_cart'>
+                                                    <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <g clipPath="url(#clip0_422_3736)">
+                                                            <path d="M4.92999 0.930054V9.07005" stroke="#2A3592" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                            <path d="M8.99999 5H0.859985" stroke="#2A3592" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_422_3736">
+                                                                <rect width="8.14" height="8.14" fill="white" transform="translate(0.859985 0.930054)" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                    <span>Cart</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='col-6'>
+                                        <div className='saved_img_information'>
+                                            <div className="save_item_img">
+                                                <Link to="/product" onClick={() => setCartOpen(false)}>
+                                                    <img src={saved_6} alt="saved img" />
+                                                </Link>
+                                            </div>
+                                            <div className='cart_price_wrapper'>
+                                                <div className='d-flex align-items-center price_of_cart_wrap'>
+                                                    <span>₹8,000  </span>
+                                                    <s>₹8,600</s>
+                                                </div>
+                                                <button className='plus_cart'>
+                                                    <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <g clipPath="url(#clip0_422_3736)">
+                                                            <path d="M4.92999 0.930054V9.07005" stroke="#2A3592" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                            <path d="M8.99999 5H0.859985" stroke="#2A3592" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_422_3736">
+                                                                <rect width="8.14" height="8.14" fill="white" transform="translate(0.859985 0.930054)" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                    <span>Cart</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='col-6'>
+                                        <div className='saved_img_information'>
+                                            <div className="save_item_img">
+                                                <Link to="/product" onClick={() => setCartOpen(false)}>
+                                                    <img src={saved_7} alt="saved img" />
+                                                </Link>
+                                            </div>
+                                            <div className='cart_price_wrapper'>
+                                                <div className='d-flex align-items-center price_of_cart_wrap'>
+                                                    <span>₹18,900 </span>
+                                                </div>
+                                                <button className='plus_cart'>
+                                                    <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <g clipPath="url(#clip0_422_3736)">
+                                                            <path d="M4.92999 0.930054V9.07005" stroke="#2A3592" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                            <path d="M8.99999 5H0.859985" stroke="#2A3592" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_422_3736">
+                                                                <rect width="8.14" height="8.14" fill="white" transform="translate(0.859985 0.930054)" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                    <span>Cart</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='col-6'>
+                                        <div className='saved_img_information'>
+                                            <div className="save_item_img">
+                                                <Link to="/product" onClick={() => setCartOpen(false)}>
+                                                    <img src={saved_8} alt="saved img" />
+                                                </Link>
+                                            </div>
+                                            <div className='cart_price_wrapper'>
+                                                <div className='d-flex align-items-center price_of_cart_wrap'>
+                                                    <span>₹2,000 </span>
+                                                    <s>₹2,600</s>
+                                                </div>
+                                                <button className='plus_cart'>
+                                                    <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <g clipPath="url(#clip0_422_3736)">
+                                                            <path d="M4.92999 0.930054V9.07005" stroke="#2A3592" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                            <path d="M8.99999 5H0.859985" stroke="#2A3592" strokeWidth="1.7" strokeMiterlimit="10" />
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_422_3736">
+                                                                <rect width="8.14" height="8.14" fill="white" transform="translate(0.859985 0.930054)" />
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                    <span>Cart</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </Tab>
+                    </Tabs>
+                </div>
+            </div>
+
+            <div className={calanderOpen ? "cart_wrap active" : "cart_wrap"}>
+                <div className="cart_dark" onClick={() => setCalanderOpen(false)}></div>
+                <div className="cart_inner calander_wrap position-relative">
+                    <div className="date_wrap"><DayPicker showOutsideDays fixedWeeks /></div>
+                    <div className="cal_news_wrap">
+                        <div className="cal_news">
+                            <div className="cla_news_title">
+                                <div className="cla_news_left">
+                                    <span style={{ backgroundColor: "#FF6C6C" }}></span>
+                                    <p style={{ color: "#FF6C6C" }}>Workshop</p>
+                                </div>
+                                <span>12:45 pm</span>
+                            </div>
+                            <div className="workshop_title">
+                                <h3>Everyday Makeup</h3>
+                                <p>Learn how to apply subtle make up in under 10 minutes. Follow this routine every day.</p>
+                            </div>
+                            <div className="join_wrap">
+                                <p>with Divya Sancheti</p>
+                                <div className="join_btn_wrap">
+                                    <p>2 hrs</p>
+                                    <button className="join_btn">Join</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="cal_news">
+                            <div className="cla_news_title">
+                                <div className="cla_news_left">
+                                    <span style={{ backgroundColor: "#FF6C6C" }}></span>
+                                    <p style={{ color: "#FF6C6C" }}>Workshop</p>
+                                </div>
+                                <span>12:45 pm</span>
+                            </div>
+                            <div className="workshop_title">
+                                <h3>Everyday Makeup</h3>
+                                <p>Learn how to apply subtle make up in under 10 minutes. Follow this routine every day.</p>
+                            </div>
+                            <div className="join_wrap">
+                                <p>with Divya Sancheti</p>
+                                <div className="join_btn_wrap">
+                                    <p>2 hrs</p>
+                                    <button className="join_btn">Join</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="cal_news">
+                            <div className="cla_news_title">
+                                <div className="cla_news_left">
+                                    <span style={{ backgroundColor: "#FF6C6C" }}></span>
+                                    <p style={{ color: "#FF6C6C" }}>Workshop</p>
+                                </div>
+                                <span>12:45 pm</span>
+                            </div>
+                            <div className="workshop_title">
+                                <h3>Everyday Makeup</h3>
+                                <p>Learn how to apply subtle make up in under 10 minutes. Follow this routine every day.</p>
+                            </div>
+                            <div className="join_wrap">
+                                <p>with Divya Sancheti</p>
+                                <div className="join_btn_wrap">
+                                    <p>2 hrs</p>
+                                    <button className="join_btn">Join</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="date_sync">
+                        <div className="resend_otp_wrap">
+                            <button className="resend_btn">
+                                <span>3rd July 2022</span>
+                                <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_2146_6797)">
+                                        <path d="M0.599609 1.43018H7.98961V8.82018" stroke="#2A3592" stroke-width="1.7" stroke-miterlimit="10" />
+                                        <path d="M0.599609 8.82018L7.98961 1.43018" stroke="#2A3592" stroke-width="1.7" stroke-miterlimit="10" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_2146_6797">
+                                            <rect width="8.84" height="8.84" fill="white" transform="translate(0 0.580078)" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </button>
+                            <button className="resend_btn">
+                                <span>Sync Calendar</span>
+                                <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_2146_6803)">
+                                        <path d="M15.1499 0.5V7.03H8.62988" stroke="#2A3990" stroke-width="1.7" stroke-miterlimit="10" />
+                                        <path d="M15.1507 7.02988L9.76074 1.62988H8.79074C6.45074 1.62988 4.36074 2.72988 3.01074 4.43988" stroke="#2A3990" stroke-width="1.7" stroke-linejoin="round" />
+                                        <path d="M1.45996 17.5V10.97H7.98996" stroke="#2A3990" stroke-width="1.7" stroke-miterlimit="10" />
+                                        <path d="M1.45996 10.97L6.84996 16.36H7.81996C10.16 16.36 12.25 15.26 13.6 13.55" stroke="#2A3990" stroke-width="1.7" stroke-linejoin="round" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_2146_6803">
+                                            <rect width="15.39" height="17" fill="white" transform="translate(0.610352 0.5)" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <Modal show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" centered>
+                <Modal.Body className="login_body">
+                    {
+                        otpverify ? null : (
+                            <div className="login_wrap">
+                                <div className="login_title_wrap">
+                                    <h3>Login to your Account</h3>
+                                    <h4>See your credits, orders and saved address</h4>
+                                </div>
+                                <div className="login_input_wrap">
+                                    <div className="login_input_inner">
+                                        <input type="text" placeholder="Phone Number" />
+                                        <span>+91</span>
+                                    </div>
+                                    <button type="button" onClick={() => setOtpverify(true)}>
+                                        <span>Send OTP</span>
+                                        <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g clip-path="url(#clip0_2143_4306)">
+                                                <path d="M3.75977 0.955078L7.79977 4.99508L3.75977 9.04508" stroke="white" stroke-width="1.7" stroke-miterlimit="10" />
+                                                <path d="M0.410156 5.00488H7.80016" stroke="white" stroke-width="1.7" stroke-miterlimit="10" />
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_2143_4306">
+                                                    <rect width="8.59" height="9.29" fill="white" transform="translate(0.410156 0.35498)" />
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div className="login_info_wrap">
+                                    <p>If you don’t have an account, we’ll create one for you</p>
+                                </div>
+                            </div>
+                        )
+                    }
+
+                    {
+                        otpverify ? (
+                            <div className="login_wrap">
+                                <div className="login_title_wrap">
+                                    <h3>One-time Password</h3>
+                                    <h4>Enter the OTP we sent to <span>+91 91283 61521</span></h4>
+                                </div>
+                                <div className="login_input_wrap">
+                                    <div className="login_input_inner">
+                                        <ReactInputVerificationCode onChange={console.log} />
+                                    </div>
+                                    <button type="button" onClick={handleClose}>
+                                        <span>Login</span>
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g clip-path="url(#clip0_2143_4277)">
+                                                <path d="M11.9996 23.1501C18.1576 23.1501 23.1496 18.1581 23.1496 12.0001C23.1496 5.84212 18.1576 0.850098 11.9996 0.850098C5.84163 0.850098 0.849609 5.84212 0.849609 12.0001C0.849609 18.1581 5.84163 23.1501 11.9996 23.1501Z" stroke="white" stroke-width="1.7" stroke-miterlimit="10" />
+                                                <path d="M12.0003 13.86C14.1708 13.86 15.9303 12.1005 15.9303 9.93C15.9303 7.75952 14.1708 6 12.0003 6C9.82983 6 8.07031 7.75952 8.07031 9.93C8.07031 12.1005 9.82983 13.86 12.0003 13.86Z" stroke="white" stroke-width="1.7" stroke-miterlimit="10" />
+                                                <path d="M17.7498 21.5401C17.9098 21.0101 17.9898 20.4401 17.9898 19.8601C17.9898 16.5501 15.3098 13.8701 11.9998 13.8701C8.68977 13.8701 6.00977 16.5501 6.00977 19.8601C6.00977 20.4401 6.09977 21.0101 6.24977 21.5401" stroke="white" stroke-width="1.7" stroke-miterlimit="10" />
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_2143_4277">
+                                                    <rect width="24" height="24" fill="white" />
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div className="resend_otp_wrap">
+                                    <button className="change_num_btn" onClick={() => setOtpverify(false)}>
+                                        <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g clip-path="url(#clip0_2143_4283)">
+                                                <path d="M5.24023 9.04492L1.20023 5.00492L5.24023 0.954923" stroke="#2A3592" stroke-width="1.7" stroke-miterlimit="10" />
+                                                <path d="M8.58984 4.99512L1.19984 4.99512" stroke="#2A3592" stroke-width="1.7" stroke-miterlimit="10" />
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_2143_4283">
+                                                    <rect width="8.59" height="9.29" fill="white" transform="translate(8.58984 9.64502) rotate(-180)" />
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
+                                        <span>Change number</span>
+                                    </button>
+                                    <button className="resend_btn">
+                                        <span>Resend OTP</span>
+                                        <svg width="9" height="10" viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g clip-path="url(#clip0_2143_4289)">
+                                                <path d="M8.15039 0.514893V4.51489H4.15039" stroke="#2A3592" stroke-width="1.7" stroke-miterlimit="10" />
+                                                <path d="M8.15016 4.51501L5.02016 1.38501H4.54016C2.53016 1.38501 0.910156 3.00501 0.910156 5.00501C0.910156 7.00501 2.53016 8.63501 4.54016 8.63501C5.54016 8.63501 6.45016 8.22501 7.10016 7.57501" stroke="#2A3592" stroke-width="1.7" stroke-linejoin="round" />
+                                            </g>
+                                            <defs>
+                                                <clipPath id="clip0_2143_4289">
+                                                    <rect width="8.94" height="8.97" fill="white" transform="translate(0.0605469 0.514893)" />
+                                                </clipPath>
+                                            </defs>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        ) : null
+                    }
+
+                </Modal.Body>
+            </Modal>
         </>
     );
     // }
