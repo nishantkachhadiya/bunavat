@@ -252,20 +252,32 @@ const Product = () => {
                         </div>
                     </div>
                     <div className='col-md-6 product_info_right_section_wrap'>
-                        <Slider {...settings} className="product_slider">
-                            <div>
-                                <img src={product_slider} alt="slider" />
-                            </div>
-                            <div>
-                                <img src={product_slider} alt="slider" />
-                            </div>
-                            <div>
-                                <img src={product_slider} alt="slider" />
-                            </div>
-                            <div>
-                                <img src={product_slider} alt="slider" />
-                            </div>
-                        </Slider>
+                        <div>
+                            <Slider {...settings} className="product_slider">
+                                <div>
+                                    <img src={product_slider} alt="slider" />
+                                </div>
+                                <div>
+                                    <img src={product_slider} alt="slider" />
+                                </div>
+                                <div>
+                                    <img src={product_slider} alt="slider" />
+                                </div>
+                                <div>
+                                    <img src={product_slider} alt="slider" />
+                                </div>
+                            </Slider>
+                        </div>
+
+                        <div className="slaman_link">
+                            <p>Salmon Pink</p>
+                            <ul className='color_list'>
+                                <li className='active' style={{ backgroundColor: "#F7DACE" }}></li>
+                                <li style={{ backgroundColor: "#BEF3E0" }}></li>
+                                <li style={{ backgroundColor: "#fff", border: "1px solid #d2d2d2" }}></li>
+                                <li style={{ backgroundColor: "#037A44" }}></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -274,7 +286,7 @@ const Product = () => {
                 <div className='container'>
                     <div className='structured_fabric_inner'>
                         <div className="row">
-                            <div className='col-md-4'>
+                            <div className='col-md-4 col-sm-6'>
                                 <div className='structured_fabric_img'>
                                     <img src={product_1} alt="structured img" />
                                 </div>
@@ -283,7 +295,7 @@ const Product = () => {
                                     <span>Keeps its shape</span>
                                 </div>
                             </div>
-                            <div className='col-md-4'>
+                            <div className='col-md-4 col-sm-6'>
                                 <div className='structured_fabric_img'>
                                     <img src={product_2} alt="structured img" />
                                 </div>
@@ -292,16 +304,18 @@ const Product = () => {
                                     <span>Hand-made by artisans</span>
                                 </div>
                             </div>
-                            <div className='col-md-4'>
-                                <div className='structured_fabric_img common_product_dark_bg'>
-                                    <img src={product_3} alt="structured img" />
-                                </div>
-                                <div className='product_left_details w-100'>
-                                    <span>Pair it with</span>
-                                    <p className='d-flex align-items-cenrer justify-content-between'>
-                                        Pleated Pajama Pants
-                                        <span className='product_price_wrap'>₹2,100 </span>
-                                    </p>
+                            <div className='col-md-4 col-sm-6'>
+                                <div className="position-relative">
+                                    <div className='structured_fabric_img common_product_dark_bg'>
+                                        <img src={product_3} alt="structured img" />
+                                    </div>
+                                    <div className='product_left_details w-100'>
+                                        <span>Pair it with</span>
+                                        <p className='d-flex align-items-cenrer justify-content-between'>
+                                            Pleated Pajama Pants
+                                            <span className='product_price_wrap'>₹2,100 </span>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

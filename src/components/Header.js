@@ -71,6 +71,20 @@ export default function Header() {
         }
     }
 
+    const sidebar = (classs) => {
+        if (document.body.getAttribute("side-menu") == classs) {
+            document.body.removeAttribute("side-menu", classs)
+        }
+        else {
+            document.body.setAttribute("side-menu", classs)
+        }
+    }
+
+    const dark_sidebar = (classs) => {
+        document.body.removeAttribute("main-sidebar", classs)
+    }
+
+
     return (
         <>
             <header className={scroll || headerColor ? "bunavat_wrapper active" : "bunavat_wrapper"}>
@@ -176,13 +190,20 @@ export default function Header() {
                                         <p>3</p>
                                     </button>
                                 </li>
+                                <li>
+                                    <div id="toggle" className="toggle" onClick={() => { sidebar("side_bar") }}>
+                                        <div className="one"></div>
+                                        <div className="two"></div>
+                                        <div className="three"></div>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
                 <div className="sidebar_menu_wrapper shop_sidebar">
-                    <div className="dark_bg" onClick={() => setScroll(false), setHeaderColor(false)}></div>
+                    <div className="dark_bg" onClick={() => { dark_sidebar("shopsidebar") }}></div>
                     <div className="sidebar_menu_list">
                         <div className="top_search_wrap">
                             <div className="search_input">
@@ -655,6 +676,10 @@ export default function Header() {
                                     </div>
                                 </div>
                             </div>
+                            <button type="button" className="checkout_btn">
+                                <span>Checkout</span>
+                                <span><s>₹25,600</s>₹21,600</span>
+                            </button>
                         </Tab>
                         <Tab eventKey="saved" title="Saved">
                             <div className='saved_wrapper'>

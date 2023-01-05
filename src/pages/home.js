@@ -420,7 +420,7 @@ const Home = () => {
                             <Tab eventKey="haldi_gallery" title="Haldi Gallery">
                                 <div className='tab_common_contain'>
                                     <div className='row'>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -432,7 +432,7 @@ const Home = () => {
                                                 </div>
                                             </Link>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -444,7 +444,7 @@ const Home = () => {
                                                 </div>
                                             </Link>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -456,7 +456,7 @@ const Home = () => {
                                                 </div>
                                             </Link>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -474,7 +474,7 @@ const Home = () => {
                             <Tab eventKey="bespoke_studio" title="Bespoke Studio">
                                 <div className='tab_common_contain'>
                                     <div className='row'>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -486,7 +486,7 @@ const Home = () => {
                                                 </div>
                                             </Link>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -498,7 +498,7 @@ const Home = () => {
                                                 </div>
                                             </Link>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -510,7 +510,7 @@ const Home = () => {
                                                 </div>
                                             </Link>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -528,7 +528,7 @@ const Home = () => {
                             <Tab eventKey="roka_exhibit" title="Contact">
                                 <div className='tab_common_contain'>
                                     <div className='row'>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -540,7 +540,7 @@ const Home = () => {
                                                 </div>
                                             </Link>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -552,7 +552,7 @@ const Home = () => {
                                                 </div>
                                             </Link>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -564,7 +564,7 @@ const Home = () => {
                                                 </div>
                                             </Link>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -582,7 +582,7 @@ const Home = () => {
                             <Tab eventKey="the_bride" title="The Bride">
                                 <div className='tab_common_contain'>
                                     <div className='row'>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -594,7 +594,7 @@ const Home = () => {
                                                 </div>
                                             </Link>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -606,7 +606,7 @@ const Home = () => {
                                                 </div>
                                             </Link>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -618,7 +618,7 @@ const Home = () => {
                                                 </div>
                                             </Link>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -636,7 +636,7 @@ const Home = () => {
                             <Tab eventKey="festival_of_lights" title="Festival of Lights">
                                 <div className='tab_common_contain'>
                                     <div className='row'>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -648,7 +648,7 @@ const Home = () => {
                                                 </div>
                                             </Link>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -660,7 +660,7 @@ const Home = () => {
                                                 </div>
                                             </Link>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -672,7 +672,7 @@ const Home = () => {
                                                 </div>
                                             </Link>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -690,7 +690,7 @@ const Home = () => {
                             <Tab eventKey="gujarati_cholis" title="gujarati_cholis">
                                 <div className='tab_common_contain'>
                                     <div className='row'>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -702,7 +702,7 @@ const Home = () => {
                                                 </div>
                                             </Link>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -714,7 +714,7 @@ const Home = () => {
                                                 </div>
                                             </Link>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -726,7 +726,7 @@ const Home = () => {
                                                 </div>
                                             </Link>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -744,7 +744,7 @@ const Home = () => {
                             <Tab eventKey="transit_wear" title="Transit Wear">
                                 <div className='tab_common_contain'>
                                     <div className='row'>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -756,7 +756,7 @@ const Home = () => {
                                                 </div>
                                             </Link>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -768,7 +768,7 @@ const Home = () => {
                                                 </div>
                                             </Link>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -780,7 +780,7 @@ const Home = () => {
                                                 </div>
                                             </Link>
                                         </div>
-                                        <div className="col-md-6">
+                                        <div className="col-6">
                                             <Link to="/product">
                                                 <div className='common_tab_info'>
                                                     <div className='common_tab_img'>
@@ -812,41 +812,39 @@ const Home = () => {
                         </Link>
 
                         <div className='shop_hald_wrap'>
-                            <div className='container'>
-                                <div className="shop_hald_inner">
-                                    <div className='shop_hald_info'>
-                                        <Link to="/" className='d-flex align-items-center'>
-                                            <h3>Shop Haldi Gallery</h3>
-                                            <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4.09082 1.81824H17.1817V14.9091" stroke="black" strokeWidth="3" strokeMiterlimit="10" />
-                                                <path d="M1.875 17.1786L16.2375 2.81604" stroke="black" strokeWidth="3" strokeMiterlimit="10" />
-                                            </svg>
+                            <div className="shop_hald_inner">
+                                <div className='shop_hald_info'>
+                                    <Link to="/" className='d-flex align-items-center'>
+                                        <h3>Shop Haldi Gallery</h3>
+                                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M4.09082 1.81824H17.1817V14.9091" stroke="black" strokeWidth="3" strokeMiterlimit="10" />
+                                            <path d="M1.875 17.1786L16.2375 2.81604" stroke="black" strokeWidth="3" strokeMiterlimit="10" />
+                                        </svg>
 
-                                        </Link>
-                                        <p>64 Designs  •  Updated Monthly</p>
-                                    </div>
-                                    <div className='shop_hald_info'>
-                                        <Link to="/" className='d-flex align-items-center'>
-                                            <h3>Most Loved</h3>
-                                            <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4.09082 1.81824H17.1817V14.9091" stroke="black" strokeWidth="3" strokeMiterlimit="10" />
-                                                <path d="M1.875 17.1786L16.2375 2.81604" stroke="black" strokeWidth="3" strokeMiterlimit="10" />
-                                            </svg>
+                                    </Link>
+                                    <p>64 Designs  •  Updated Monthly</p>
+                                </div>
+                                <div className='shop_hald_info'>
+                                    <Link to="/" className='d-flex align-items-center'>
+                                        <h3>Most Loved</h3>
+                                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M4.09082 1.81824H17.1817V14.9091" stroke="black" strokeWidth="3" strokeMiterlimit="10" />
+                                            <path d="M1.875 17.1786L16.2375 2.81604" stroke="black" strokeWidth="3" strokeMiterlimit="10" />
+                                        </svg>
 
-                                        </Link>
-                                        <p>Our Favourite 100 Designs</p>
-                                    </div>
-                                    <div className='shop_hald_info'>
-                                        <Link to="/" className='d-flex align-items-center'>
-                                            <h3>Shop All</h3>
-                                            <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M4.09082 1.81824H17.1817V14.9091" stroke="black" strokeWidth="3" strokeMiterlimit="10" />
-                                                <path d="M1.875 17.1786L16.2375 2.81604" stroke="black" strokeWidth="3" strokeMiterlimit="10" />
-                                            </svg>
+                                    </Link>
+                                    <p>Our Favourite 100 Designs</p>
+                                </div>
+                                <div className='shop_hald_info'>
+                                    <Link to="/" className='d-flex align-items-center'>
+                                        <h3>Shop All</h3>
+                                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M4.09082 1.81824H17.1817V14.9091" stroke="black" strokeWidth="3" strokeMiterlimit="10" />
+                                            <path d="M1.875 17.1786L16.2375 2.81604" stroke="black" strokeWidth="3" strokeMiterlimit="10" />
+                                        </svg>
 
-                                        </Link>
-                                        <p>1,600+ Designs</p>
-                                    </div>
+                                    </Link>
+                                    <p>1,600+ Designs</p>
                                 </div>
                             </div>
                         </div>
@@ -1344,7 +1342,7 @@ const Home = () => {
 
                         <div className='blog_details_wrap'>
                             <div className='row'>
-                                <div className="col-md-3">
+                                <div className="col-lg-3 col-md-4">
                                     <div className='blog_info'>
                                         <p>Aradhana Fashion is a pioneer Indian ethnic wear brand for over 4 decades now. Our beautiful collection always leaves women with a twinkle in the eye. Our collection of Indian ethnic wear and Indian designer wear are specifically made to make woman feel strong, confident, and powerful as she flaunts her curves and opinions. Other than that, at Aradhana Fashion, we celebrate each woman for who she is. We take the greatest pleasure in showcasing the gorgeous, beautifully handcrafted, and trendiest collection of Indian wedding dresses online.</p>
                                     </div>
@@ -1362,7 +1360,7 @@ const Home = () => {
                                         <p>Festive wear dresses - When we think of a festive celebration first thing that strikes our mind is lively vibrant hues! keeping this amazing concept in our mind, AFPL festive collection is in harmony with trending colours of the season and mind blowing silhouettes. Our festive collection includes fancy designer sarees , lehengas, salwar kameez, kurti set and many more styles of Indian ethnic wear </p>
                                     </div>
                                 </div>
-                                <div className="col-md-3">
+                                <div className="col-lg-3 col-md-4">
                                     <div className="blog_info"><p>Indian wedding dresses – Weddings are greatest festival in India. The houses are decorated with lights and the fragrance of celebration is in the air. The celebration demands everyone to be dressed in their best. This is why our collection of Indian wedding dresses online is loaded with spectacular Indian designer wear and Indo western outfits to add more beauty to your already charming persona. Also, you can find some beautiful lehngas & sarees online for gifting purpose.</p></div>
 
                                     <div className="blog_info"><p>Ready to wear sarees - We at AFPL always try to come up with better to best wearable, and affordable fashion options for you. This is why we have introduced ready to wear sarees , these sarees look same as unstitched saree and the best part is you can wear these sarees in just one minute. Pick your favorite from our collection of women ethnic wear online.</p></div>
@@ -1376,7 +1374,7 @@ const Home = () => {
                                         <p>The most interesting part about shopping with AFPL is the fact that we always update our collection of trendy women ethnic wear online on regular basis. So, you can easily pick a few classic pieces that can never go out of fashion. Follow us </p>
                                     </div>
                                 </div>
-                                <div className="col-md-3">
+                                <div className="col-lg-3 col-md-4">
                                     <div className="blog_info">
                                         <p>
                                             on social media to get regular updates of our top trending products and many other engaging activities like giveaway quizes, keep yourself updated with what is happening in the world of Indian ethnic and Indian designer wear. Check out our blog , that offers some amazing styling tips, shopping tips and much more . Keep visiting our website to stay updated with best of offers and deals on Indian wedding dresses online. Here are some options for you if you're not able to decide what to wear: When in doubt wear a Maroon colour, it’s a timeless piece and for sure is the most auspicious colour for occasions. These amazing Maroon classic pieces can be your go to this wedding season.
@@ -1403,7 +1401,7 @@ const Home = () => {
                                         </ul>
                                     </div>
                                 </div>
-                                <div className='col-md-3'>
+                                <div className='col-lg-3 col-md-4'>
                                     <div className='blog_info'>
                                         <h3>How safe it is shop lehngas and sarees online?</h3>
                                         <p>It is safe to shop women ethnic wear online, you just have to cross check the source from where you are buying, check customer reviews and social media profiles. Here are some of the benefits of shopping online from AFPL store-
